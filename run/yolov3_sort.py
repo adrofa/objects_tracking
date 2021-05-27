@@ -13,20 +13,16 @@ if __name__ == "__main__":
     weights_path = r"../weights/yolov3.weights"
     in_dir = r"../input"
     out_dir = r"../output/yolov3_sort"
+    vid_file = "campus4-c2.avi"
+
     os.makedirs(out_dir, exist_ok=True)
 
-    # model
     model = load_model(model_path, weights_path)
     for p in model.parameters():
         p.requires_grad = False
 
-    vid_files = os.listdir(in_dir)
-    for file in vid_files:
-        # tracker
-        tracker = Sort()
+    in_path = str(Path(in_dir) / vid_file)
+    out_path = str(Path(out_dir) / vid_file)
 
-        in_path = str(Path(in_dir) / file)
-        out_path = str(Path(out_dir) / file)
-
-        process_video(in_path, out_path, model, tracker)
-        print(f"{file} processing completed", file=sys.stdout)
+    process_video(in_path, out_path, model, Sort())
+    print(f" | {vid_file} processing completed", file=sys.stdout)

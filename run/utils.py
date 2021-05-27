@@ -2,6 +2,7 @@ from pytorchyolo.detect import detect_image
 
 import sys
 import cv2
+import gc
 
 
 def process_video(in_path, out_path, model, tracker, resolution=416, conf_thres=0.85, nms_thres=0.5, verbose=True):
@@ -43,6 +44,9 @@ def process_video(in_path, out_path, model, tracker, resolution=416, conf_thres=
             if verbose:
                 print(f"\r{frame_i} of {frame_total} processed", file=sys.stdout, end="")
                 frame_i += 1
+
+    del tracker
+    gc.collect()
 
 
 def draw_bbx(frame_, detection):
