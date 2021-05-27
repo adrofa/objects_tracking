@@ -1,0 +1,4 @@
+.idea
+notebooks
+__pycache__
+weights/yolov3.weights
