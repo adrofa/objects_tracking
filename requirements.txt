@@ -1,0 +1,6 @@
+torch==1.8.1
+torchvision==0.9.1
+tqdm==4.61.0
+filterpy==1.4.5
+imgaug==0.4.0
+matplotlib==3.4.2
